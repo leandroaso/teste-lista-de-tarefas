@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: ./back
+      dockerfile: Tarefas.Api/Dockerfile
+    container_name: tarefas-api
+    environment:
+      ConnectionStrings__Sqlite: Data Source=/app/data/tarefas.db
+      Cors__Origins__0: http://localhost:4200
+    volumes:
+      - tarefas-data:/app/data
+    ports:
+      - "5146:8080"
+    restart: unless-stopped
+
+  front:
+    build:
+      context: ./Front
+      dockerfile: Dockerfile
+    container_name: tarefas-front
+    depends_on:
+      - api
+    ports:
+      - "4200:80"
+    restart: unless-stopped
+
+volumes:
+  tarefas-data:

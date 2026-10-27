@@ -1,0 +1,23 @@
+<article class="task-card" [class.border-red-300]="vencida()" [class.border-slate-200]="!vencida()">
+  <div class="flex items-start justify-between gap-2">
+    <h3 class="break-words font-semibold text-slate-800">{{ tarefa().titulo }}</h3>
+    <div class="flex shrink-0 gap-1">
+      <button type="button" class="btn-icon" aria-label="Editar" (click)="editar.emit(tarefa())">✏️</button>
+      <button type="button" class="btn-icon-danger" aria-label="Excluir" (click)="excluir.emit(tarefa())">🗑️</button>
+    </div>
+  </div>
+  @if (tarefa().descricao) {
+    <p class="mt-1 break-words text-sm text-slate-600">{{ tarefa().descricao }}</p>
+  }
+  <p class="mt-2 text-xs" [class.text-red-600]="vencida()" [class.text-slate-500]="!vencida()">
+    Vence em {{ tarefa().dataVencimento | date: 'dd/MM/yyyy' }}@if (vencida()) { · vencida }
+  </p>
+  <label class="mt-2 block text-xs text-slate-500">
+    Status
+    <select class="field-select !py-1 text-sm text-slate-700" (change)="alterarStatus($event)">
+      @for (c of colunas; track c.status) {
+        <option [value]="c.status" [selected]="c.status === tarefa().status">{{ c.titulo }}</option>
+      }
+    </select>
+  </label>
+</article>

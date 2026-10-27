@@ -1,0 +1,45 @@
+<div class="dialog-backdrop" (click)="cancelar.emit()">
+  <form [formGroup]="form" (ngSubmit)="salvar()" (click)="$event.stopPropagation()" class="dialog-panel" role="dialog" aria-modal="true">
+    <h2 class="text-lg font-semibold text-slate-800">{{ tarefa() ? 'Editar tarefa' : 'Nova tarefa' }}</h2>
+
+    <label class="field-label">
+      Título
+      <input formControlName="titulo" maxlength="200" class="field-control" />
+      @if (form.controls.titulo.touched && form.controls.titulo.invalid) {
+        <span class="field-error">Informe o título.</span>
+      }
+    </label>
+
+    <label class="field-label">
+      Descrição
+      <textarea formControlName="descricao" rows="3" maxlength="1000" class="field-control"></textarea>
+    </label>
+
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <label class="field-label">
+        Vencimento
+        <input type="date" formControlName="dataVencimento" class="field-control" />
+        @if (form.controls.dataVencimento.touched && form.controls.dataVencimento.invalid) {
+          <span class="field-error">Informe a data.</span>
+        }
+      </label>
+      <label class="field-label">
+        Status
+        <select formControlName="status" class="field-select">
+          @for (c of colunas; track c.status) {
+            <option [value]="c.status">{{ c.titulo }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    @if (erro()) {
+      <p class="text-sm text-red-600">{{ erro() }}</p>
+    }
+
+    <div class="flex justify-end gap-2 pt-2">
+      <button type="button" class="btn-ghost" (click)="cancelar.emit()">Cancelar</button>
+      <button type="submit" class="btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>

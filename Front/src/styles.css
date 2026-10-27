@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+@layer components {
+  .field-label {
+    @apply block text-sm text-slate-700;
+  }
+  .field-control {
+    @apply mt-1 block w-full rounded border border-slate-300 px-2 py-1.5;
+  }
+  .field-select {
+    @apply mt-1 block w-full rounded border border-slate-300 bg-white px-2 py-1.5;
+  }
+  .field-error {
+    @apply text-xs text-red-600;
+  }
+
+  .btn-primary {
+    @apply rounded bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-700;
+  }
+  .btn-dark {
+    @apply rounded bg-slate-800 px-3 py-1.5 text-white hover:bg-slate-900;
+  }
+  .btn-ghost {
+    @apply rounded px-3 py-1.5 text-slate-600 hover:bg-slate-100;
+  }
+  .btn-icon {
+    @apply rounded p-1 text-slate-500 hover:bg-slate-100;
+  }
+  .btn-icon-danger {
+    @apply rounded p-1 text-slate-500 hover:bg-red-50;
+  }
+
+  .alert-error {
+    @apply mb-3 rounded bg-red-50 p-2 text-sm text-red-700;
+  }
+  .filter-panel {
+    @apply mb-4 grid grid-cols-1 gap-3 rounded-lg bg-white p-3 shadow-sm sm:grid-cols-2 lg:grid-cols-5 lg:items-end;
+  }
+  .board-column {
+    @apply flex min-h-40 flex-col rounded-lg border-t-4 bg-slate-100 p-3;
+  }
+  .column-badge {
+    @apply rounded-full px-2 py-0.5 text-xs;
+  }
+  .task-card {
+    @apply rounded-lg border bg-white p-3 shadow-sm;
+  }
+  .dialog-backdrop {
+    @apply fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center sm:p-4;
+  }
+  .dialog-panel {
+    @apply max-h-full w-full space-y-3 overflow-y-auto rounded-t-xl bg-white p-4 shadow-xl sm:max-w-md sm:rounded-xl;
+  }
+}
